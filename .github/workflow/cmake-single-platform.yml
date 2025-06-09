@@ -25,7 +25,7 @@ jobs:
             - name: install jwt
               run: |
                 git clone https://github.com/Thalhammer/jwt-cpp.git;
-                cd jwt-cpp;mkdir build;cd build;cmake ..;make;
+                cd jwt-cpp; mkdir build;cd build;cmake ..;make;
                 cmake --build .; sudo cmake --install .;
           
             - name: checkout
