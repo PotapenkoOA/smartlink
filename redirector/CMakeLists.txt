@@ -12,3 +12,5 @@ add_executable(http_server main.cpp)
 target_link_libraries(http_server PRIVATE ${Boost_LIBRARIES} ${OpenSSL_LIBRARIES} jwt-cpp::jwt-cpp)
 
 include_directories(${Boost_INCLUDE_DIRS})
+
+add_subdirectory(plugins)

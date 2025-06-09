@@ -45,6 +45,8 @@ jobs:
 
             - name: run tests
               run: |
+                 cp ./authentification/settings/settings.json ./authentification/build/settings.json;
+                 cp ./redirector/settings/settings.json ./redirector/build/settings.json;
                  ./authentification/build/http_server &
                  ./redirector/build/http_server &
                  ./agent/build/agent ;
