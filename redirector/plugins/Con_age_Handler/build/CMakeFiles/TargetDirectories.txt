@@ -1,0 +1,3 @@
+/home/vboxuser/Documents/smart_link/redirector2/plugins/Con_Age_Handler/build/CMakeFiles/Con_Age_Handler.dir
+/home/vboxuser/Documents/smart_link/redirector2/plugins/Con_Age_Handler/build/CMakeFiles/edit_cache.dir
+/home/vboxuser/Documents/smart_link/redirector2/plugins/Con_Age_Handler/build/CMakeFiles/rebuild_cache.dir
