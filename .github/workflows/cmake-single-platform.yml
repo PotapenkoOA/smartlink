@@ -35,9 +35,9 @@ jobs:
               run: mkdir authentification/build; cd authentification/build; cmake .. ; make; 
 
             - name: agent configure
-              run: mkdir agent/build; cd agent/build; cmake ..;make; 
+              run: mkdir agent/build; cd agent/build; cmake ..; make; 
             
-            - name: configure
+            - name: redirect configure
               run: mkdir redirector/build; cd redirector/build; cmake ..; make;
 
             #- name: build tests
@@ -45,7 +45,6 @@ jobs:
 
             - name: run tests
               run: |
-                 cd build;
                  ./authentification/build/http_server &
                  ./redirector/build/http_server &
                  ./agent/build/agent ;
