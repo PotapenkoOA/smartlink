@@ -13,4 +13,5 @@ target_link_libraries(http_server PRIVATE ${Boost_LIBRARIES} ${OpenSSL_LIBRARIES
 
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_subdirectory(plugins)
+add_subdirectory(plugins/Res_200_Handler)
+add_subdirectory(plugins/Res_405_Handler)
