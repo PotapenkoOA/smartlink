@@ -47,8 +47,8 @@ jobs:
               run: |
                  cp ./authentification/settings/settings.json ./authentification/build/settings.json;
                  cp ./redirector/settings/settings.json ./redirector/build/settings.json;
-                 ./authentification/build/http_server &
-                 ./redirector/build/http_server &
-                 ./agent/build/agent ;
+            #     ./authentification/build/http_server &
+            #     ./redirector/build/http_server &
+            #     ./agent/build/agent ;
             #     ./redirector & ./redirector & ( sleep 10 ; ./agent );
 
