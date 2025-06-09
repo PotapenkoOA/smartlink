@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/vboxuser/Documents/smart_link/agent/build",
-  "command": "/usr/bin/g++ -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK -DBOOST_JSON_NO_LIB  -g -o CMakeFiles/agent.dir/main.cpp.o -c /home/vboxuser/Documents/smart_link/agent/main.cpp",
-  "file": "/home/vboxuser/Documents/smart_link/agent/main.cpp",
-  "output": "CMakeFiles/agent.dir/main.cpp.o"
-}
-]

@@ -1,3 +1,0 @@
-/home/vboxuser/Documents/smart_link/agent/build/CMakeFiles/agent.dir
-/home/vboxuser/Documents/smart_link/agent/build/CMakeFiles/edit_cache.dir
-/home/vboxuser/Documents/smart_link/agent/build/CMakeFiles/rebuild_cache.dir
