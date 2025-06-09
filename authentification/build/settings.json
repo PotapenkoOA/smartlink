@@ -1,0 +1,12 @@
+{
+	"port":8080,
+	"plugins":[
+	{	
+		"code":200,
+		"handler":"./plugins/libRes_200_Handler.so"
+	},
+	{	
+		"code":405,
+		"handler":"./plugins/libRes_405_Handler.so"
+	}]
+}

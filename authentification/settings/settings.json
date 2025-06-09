@@ -1,0 +1,12 @@
+{
+	"port":8080,
+	"plugins":[
+	{	
+		"code":200,
+		"handler":"/home/vboxuser/Documents/smart_link/plugins/Res_200_Handler/build/libRes_200_Handler.so"
+	},
+	{	
+		"code":405,
+		"handler":"/home/vboxuser/Documents/smart_link/plugins/Res_405_Handler/build/libRes_405_Handler.so"
+	}]
+}

@@ -1,0 +1,3 @@
+/home/vboxuser/Documents/smart_link/redirector2/build/CMakeFiles/http_server.dir
+/home/vboxuser/Documents/smart_link/redirector2/build/CMakeFiles/edit_cache.dir
+/home/vboxuser/Documents/smart_link/redirector2/build/CMakeFiles/rebuild_cache.dir
