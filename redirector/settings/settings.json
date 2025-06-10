@@ -1,9 +1,13 @@
 {
 	"port":8087,
-	"plugins":[	
+	"plugins":[
+	{	
+		"code":401,
+		"handler":"./plugins/libRes_401_Handler.so"
+	},
 	{	
 		"code":307,
-		"handler":"/home/vboxuser/Documents/smart_link/redirector2/plugins/Res_307_Handler/build/libRes_307_Handler.so",
+		"handler":"./plugins/libRes_307_Handler.so",
 		"rules":[	
 		{
 			"url":"https://ru.wikipedia.org/wiki/Спокойной_ночи,_малыши!",
@@ -38,12 +42,9 @@
 			}
 		}]
 	},
-	{	
-		"code":401,
-		"handler":"/home/vboxuser/Documents/smart_link/redirector2/plugins/Res_401_Handler/build/libRes_401_Handler.so"
-	},
+	
 	{	
 		"code":405,
-		"handler":"/home/vboxuser/Documents/smart_link/redirector2/plugins/Res_405_Handler/build/libRes_405_Handler.so"
+		"handler":"./plugins/libRes_405_Handler.so"
 	}]	
 }

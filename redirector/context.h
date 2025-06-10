@@ -3,30 +3,44 @@
 
 #include <boost/beast/core.hpp>
 #include <boost/beast/http.hpp>
-#include <boost/json.hpp>
 
 namespace beast = boost::beast;     // from <boost/beast.hpp>
 namespace http = beast::http;      // from <boost/beast/http.hpp>
-namespace json = boost::json;      // from <boost/json.hpp>
 
-bool state_value = false;
+#include "icontext.h"
 
-struct Context
+class Context: public IContext
 {
-    bool next;
+    bool m_nextState;
+    std::shared_ptr<http::response<http::string_body>> m_res;
+    std::shared_ptr<http::request<http::string_body>>  m_req;
 
-    http::response<http::string_body> res;
-    http::request<http::string_body> req;
+    public:
+        Context(  std::shared_ptr<http::request<http::string_body>>  req, std::shared_ptr<http::response<http::string_body>> res )
+        {
+            m_res = res;
+            m_req = req;
+            m_nextState = true;
+        }
+        void setNext(bool nextState) 
+        {
+            m_nextState = nextState;
+        }
+
+        bool getNext(void) 
+        {
+            return m_nextState;
+        }
+
+        void setResponse( http::response<http::string_body> res ) 
+        {
+            *m_res = res;
+        }
+
+        http::request<http::string_body> getRequest()
+        {
+            return *m_req;
+        }
 };
-
-using ContextPtr = std::shared_ptr<Context>;
-
-struct ConditionContext
-{
-    ContextPtr cntxt;
-    std::string condition;
-};
-
-using ConditionContextPtr = std::shared_ptr<ConditionContext>;
 
 #endif

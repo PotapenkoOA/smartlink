@@ -1,0 +1,61 @@
+# This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
+# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
+name: smartlink
+
+on:
+    push:
+        branches: [ "main", "develop_" ]
+    pull_request:
+        branches: [ "main", "develop_" ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: install gtest
+              run: sudo apt-get install -y libgtest-dev libgmock-dev 
+              
+            - name: install openssl
+              run: sudo apt-get install -y openssl
+              
+            - name: install boost
+              run: sudo apt-get install libboost-all-dev
+              
+            - name: install jwt
+              run: |
+                git clone https://github.com/Thalhammer/jwt-cpp.git;
+                cd jwt-cpp; mkdir build;cd build;cmake ..;make;
+                cmake --build .; sudo cmake --install .;
+          
+            - name: checkout
+              uses: actions/checkout@v4
+
+            - name: authentification configure
+              run: mkdir authentification/build; cd authentification/build; cmake .. ; make; ls; 
+
+            - name: agent configure
+              run: mkdir agent/build; cd agent/build; cmake ..; make; ls;
+            
+            - name: redirect configure
+              run: mkdir redirector/build; cd redirector/build; cmake ..; make; ls;
+
+            #- name: build tests
+            #  run: cd build; make; 
+
+            #- name: run tests
+            #  run: |
+            #     cp ./authentification/settings/settings.json ./authentification/build/settings.json;
+            #     cp ./redirector/settings/settings.json ./redirector/build/settings.json;
+            #     cp ./redirector/settings/settings.json ./redirector/build/settings.json;
+            #     mkdir ./redirector/build/plugins/Con_age_Handler
+            #     cp ./redirector/build/plugins/Con_age_Handler ./redirector/build/plugins/Con_age_Handler;
+            #     cp ./redirector/build/plugins/Con_age_Handler ./redirector/build/plugins/Con_age_Handler;
+            #     cp ./redirector/build/plugins/Con_age_Handler ./redirector/build/plugins/Con_age_Handler;
+            #     cp ./redirector/settings/settings.json ./redirector/build/settings.json;
+            #     cp ./redirector/settings/settings.json ./redirector/build/settings.json;
+            #     ./authentification/build/http_server &
+            #     ./redirector/build/http_server &
+            #     ./agent/build/agent ;
+            #     ./redirector & ./redirector & ( sleep 10 ; ./agent );
+

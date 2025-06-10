@@ -1,3 +1,0 @@
-/home/vboxuser/Documents/smart_link/plugins/Res_405_Handler/build/CMakeFiles/Res_405_Handler.dir
-/home/vboxuser/Documents/smart_link/plugins/Res_405_Handler/build/CMakeFiles/edit_cache.dir
-/home/vboxuser/Documents/smart_link/plugins/Res_405_Handler/build/CMakeFiles/rebuild_cache.dir

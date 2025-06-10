@@ -1,3 +1,0 @@
-/home/vboxuser/Documents/smart_link/redirector2/plugins/Con_Weekday_Handler/build/CMakeFiles/Con_Weekday_Handler.dir
-/home/vboxuser/Documents/smart_link/redirector2/plugins/Con_Weekday_Handler/build/CMakeFiles/edit_cache.dir
-/home/vboxuser/Documents/smart_link/redirector2/plugins/Con_Weekday_Handler/build/CMakeFiles/rebuild_cache.dir

@@ -1,9 +1,8 @@
 #ifndef __SERVER__
 #define __SERVER__
 
-#include <memory>
-
-class IServer {
+class IServer 
+{
     public:
     virtual void Loop() = 0;
 };

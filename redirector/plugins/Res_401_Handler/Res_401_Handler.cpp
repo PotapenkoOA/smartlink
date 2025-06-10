@@ -5,7 +5,7 @@
 #include <jwt-cpp/jwt.h>
 #include <functional>
 
-#include "context.h"
+#include "icontext.h"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ void verify_jwt( string msg )
     auto verifier = jwt::verify()
     .allow_algorithm(jwt::algorithm::hs256{"the_holy_grail"});
  
-    verifier.verify(jwt::decode(msg));//<<std::endl;
+    verifier.verify(jwt::decode(msg));
 }
 
 std::string extract_bearer_token(const http::request<http::string_body>& req) {
@@ -33,30 +33,41 @@ std::string extract_bearer_token(const http::request<http::string_body>& req) {
     return parts[1]; // Возвращаем токен
 }
 
-extern "C"  void Handle( ContextPtr context )
+extern "C"  void Handle( IContextPtr context )
 {
-        if (context->req.find(http::field::authorization) == context->req.end()) {
-                context->res.result(http::status::unauthorized);
-                context->res.set(http::field::content_type, "text/plain");
-                context->res.body() = "Need JWT";
-                context->res.prepare_payload();
-                context->next = false;
-                return;
+        
+        http::response<http::string_body> res;
+        http::request<http::string_body> req = context->getRequest();
+
+        if ( req.find(http::field::authorization) == req.end()) 
+        {
+            res.result(http::status::unauthorized);
+            res.set(http::field::content_type, "text/plain");
+            res.body() = "Need JWT";
+            res.prepare_payload();
+            context->setResponse(res) ;
+            context->setNext(false) ;
+            return;
         }
 
         try {
-               std::string msg = extract_bearer_token( context->req );
-               verify_jwt( msg ) ;
-               context->next = true;
+
+            std::string msg = extract_bearer_token( req );
+            verify_jwt( msg ) ;
+            res.result(http::status::ok);
+            res.prepare_payload();
+            context->setResponse(res) ;
+            context->setNext(true) ;
         }
         catch(...)
         {
-                context->res.result(http::status::unauthorized);
-                context->res.set(http::field::content_type, "text/plain");
-                context->res.body() = "Bad JWT";
-                context->res.prepare_payload();
-                context->next = false;
-                return;
+            res.result(http::status::unauthorized);
+            res.set(http::field::content_type, "text/plain");
+            res.body() = "Bad JWT";
+            res.prepare_payload();
+            context->setResponse(res) ;
+            context->setNext(false) ;
+            return;
         }
 }
 

@@ -4,11 +4,9 @@
 #include "context.h"
 
 class IMiddleware
-{
-    
+{    
     public:
-    virtual void Handle(ContextPtr context) = 0;
-
+    virtual void Handle(IContextPtr context) = 0;
 };
 
 using IMiddlewarePtr = std::shared_ptr<IMiddleware>;
