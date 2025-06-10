@@ -5,7 +5,6 @@ using std::cout, std::endl;
 
 #include "get_settings.h"
 
-
 // Main function to set up the server
 int main() {
 

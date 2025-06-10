@@ -4,6 +4,7 @@ project(Con_daytime_Handler VERSION 0.1.0 LANGUAGES C CXX)
 
 find_package(Boost REQUIRED COMPONENTS url system json)
 
+include_directories(../../)
 
 add_library(Con_daytime_Handler SHARED Con_daytime_Handler.cpp)
 #add_executable(Con_daytime_Handler  Con_daytime_Handler.cpp)

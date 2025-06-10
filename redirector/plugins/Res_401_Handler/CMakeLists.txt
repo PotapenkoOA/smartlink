@@ -7,6 +7,8 @@ find_package(OpenSSL REQUIRED)
 
 find_package(jwt-cpp CONFIG REQUIRED)
 
+include_directories(../../)
+
 add_library(Res_401_Handler SHARED Res_401_Handler.cpp)
 #add_executable(Res_401_Handler  Res_401_Handler.cpp)
 

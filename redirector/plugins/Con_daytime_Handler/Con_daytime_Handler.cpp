@@ -13,41 +13,32 @@ namespace urls = boost::urls;
 #include <ctime>
 
 
-#include "context.h"
+#include "iconditioncontext.h"
 
 using namespace std;
 
 
-extern "C"  void Handle( ConditionContextPtr context )
+extern "C"  void Handle( IConditionContextPtr context )
 {
-        std::time_t now = std::time(nullptr);
+    std::time_t now = std::time(nullptr);
     
     // Преобразуем в локальное время
-        std::tm* local_time = std::localtime(&now);
+    std::tm* local_time = std::localtime(&now);
     
     // День недели (0-6, где 0 - воскресенье)
-        int daytime = local_time->tm_hour > 12;
+    int daytime = local_time->tm_hour > 12;
 
-        //std::cout<<local_time->tm_hour<<std::endl;
+    std::string condition = context->getConditionValue();
+    if(( ( condition == "pm" ) && (daytime == 1) ) ||
+            ( ( condition == "am" ) && (daytime == 0) ) )
+    {
+        context->getContext()->setNext(true) ;
+        return;
+    } 
 
-        std::string condition = context->condition;
-        if( ( condition == "pm" ) && (daytime == 1) )
-        {
-            context->cntxt->next = true ;
-            return;
-        } 
-
-        if( ( condition == "am" ) && (daytime == 0) )
-        {
-            context->cntxt->next = true ;
-            return;
-        }
-
-        context->cntxt->next = false ;
-            return;
-
+    context->getContext()->setNext(false) ;
 }
-
+/*
 int main()
 {
     ConditionContextPtr context = make_shared<ConditionContext>();
@@ -55,4 +46,4 @@ int main()
     context->condition = "pm";
     Handle( context );
     std::cout<<context->cntxt->next<<std::endl;
-}
+}*/

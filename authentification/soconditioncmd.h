@@ -1,5 +1,5 @@
-#ifndef __CONDITIONS_CMD__
-#define __CONDITIONS_CMD__
+#ifndef __SOCONDITIONS_CMD__
+#define __SOCONDITIONS_CMD__
 
 #include <string>
 #include <list>
@@ -9,18 +9,19 @@
 #include <filesystem>
 #include <dlfcn.h>
 
-#include "context.h"
+#include "iconditioncontext.h"
 
-typedef void (*func_t)(ContextPtr);
+typedef void (*func__t)(IConditionContextPtr);
 
-class ConditionCmd: public ICommand
+class SoConditionCmd: public ICommand
 {
+    std::string m_condition_value;    
     void* m_handle;
 
-    ContextPtr m_context;
+    IConditionContextPtr m_context;
 
     public:
-    ConditionCmd(std::string lib_path,  ContextPtr context )
+    SoConditionCmd(std::string lib_path,  IConditionContextPtr context )
     {
         m_context = context;
         
@@ -31,7 +32,7 @@ class ConditionCmd: public ICommand
         }    
     }
 
-    ~ConditionCmd()
+    ~SoConditionCmd()
     {
         if (m_handle)
             dlclose(m_handle);
@@ -39,7 +40,7 @@ class ConditionCmd: public ICommand
 
     void Execute()
     {
-        func_t _function = (func_t)dlsym(m_handle, "Handle");
+        func__t _function = (func__t)dlsym(m_handle, "Handle");
 
         const char* error = dlerror();
         if (error) {
@@ -47,8 +48,9 @@ class ConditionCmd: public ICommand
             return;// 1;
         }
 
-        // Вызываем функции
         _function(m_context);
+        cout<<m_context->getConditionValue()<<" "<<m_context->getContext()->getNext()<<endl;
+
         return;
     }
 };

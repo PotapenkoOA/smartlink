@@ -8,7 +8,7 @@ using std::cout, std::endl;
 // Main function to set up the server
 int main() {
 
-    read_dependencies("./settings.json");
+    ReadSettings::read_dependencies("./settings.json");
         
     try {
         IServerPtr psrv = IoC::Resolve<IServerPtr>( "HttpServer" );  
@@ -19,5 +19,4 @@ int main() {
         std::cerr << "Error: " << e.what() << '\n';
         return 1;
     }
-   
 }

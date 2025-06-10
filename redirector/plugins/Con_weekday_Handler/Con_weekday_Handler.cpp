@@ -13,12 +13,12 @@ namespace urls = boost::urls;
 #include <ctime>
 
 
-#include "context.h"
+#include "iconditioncontext.h"
 
 using namespace std;
 
 
-extern "C"  void Handle( ConditionContextPtr context )
+extern "C"  void Handle( IConditionContextPtr context )
 {
         std::time_t now = std::time(nullptr);
     
@@ -28,49 +28,49 @@ extern "C"  void Handle( ConditionContextPtr context )
     // День недели (0-6, где 0 - воскресенье)
         int weekday = local_time->tm_wday;
 
-        std::string condition = context->condition;
+        std::string condition = context->getConditionValue();
         if( (condition == "mon") &&  (weekday == 1))
         {
-            context->cntxt->next = true ;
+            context->getContext()->setNext(true) ;
             return;
         } 
 
         if( (condition == "tue") &&  (weekday == 2))
         {
-            context->cntxt->next = true ;
+            context->getContext()->setNext(true) ;
             return;
         }
 
         if( (condition == "wed") &&  (weekday == 3))
         {
-            context->cntxt->next = true ;
+            context->getContext()->setNext(true) ;
             return;
         }
 
         if( (condition == "thu") &&  (weekday == 4))
         {
-            context->cntxt->next = true ;
+            context->getContext()->setNext(true) ;
             return;
         } 
 
         if( (condition == "fri") &&  (weekday == 5))
         {
-            context->cntxt->next = true ;
+            context->getContext()->setNext(true) ;
             return;
         } 
 
         if( (condition == "sat") &&  (weekday == 6))
         {
-            context->cntxt->next = true ;
+            context->getContext()->setNext(true) ;
             return;
         } 
 
         if( (condition == "sun") &&  (weekday == 7))
         {
-            context->cntxt->next = true ;
+            context->getContext()->setNext(true) ;
             return;
         } 
 
-        context->cntxt->next = false ;
+        context->getContext()->setNext(false) ;
             return;
 }

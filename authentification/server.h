@@ -20,10 +20,7 @@ class Server: public IServer
     Server( unsigned short port )
     {
         tcp::endpoint ep = { tcp::v4(), port};
-        acceptor = std::make_shared<tcp::acceptor>(ioc, ep);
-
-        // Локальный endpoint (после bind/connect)
-       
+        acceptor = std::make_shared<tcp::acceptor>(ioc, ep);       
     }
 
     void Loop()
@@ -34,8 +31,8 @@ class Server: public IServer
            
             acceptor->accept(socket);
 
-            Session s(std::move(socket));
-            s.Start();
+            StartSessionCmd s(std::move(socket));
+            s.Execute();
         }
     }
 };

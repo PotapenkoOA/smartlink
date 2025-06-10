@@ -4,25 +4,31 @@
 //#include <memory>
 #include <functional>
 
-#include "context.h"
+#include "iconditioncontext.h"
 
 using namespace std;
 
 
 
-extern "C"  void Handle( ConditionContextPtr context )
+extern "C"  void Handle( IConditionContextPtr context )
 {
-        int  m_age = atoi(context->condition.c_str());
+        std::string condition = context->getConditionValue();
+        bool state = context->getContext()->getNext();
+
+        int  m_age = atoi(condition.c_str());
         int age = 18;
         
-        if( context->condition.find_last_of("+") != std::string::npos )
+        if( condition.find_last_of("+") != std::string::npos )
         { 
-                context->cntxt->next = (age >= m_age) ;  
+                state = (age >= m_age) ;  
         }            
-        else if (context->condition.find_last_of("-") != std::string::npos )
+        else 
+        if ( condition.find_last_of("-") != std::string::npos )
         {
-                context->cntxt->next = ( age <= m_age);  
+                state = ( age <= m_age);  
         }
-        else    context->cntxt->next = (age == m_age) ;   
+        else    state = (age == m_age) ;   
+
+        context->getContext()->setNext( state );
         
 }

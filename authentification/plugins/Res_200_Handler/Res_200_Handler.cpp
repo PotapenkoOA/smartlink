@@ -4,7 +4,15 @@
 #include <jwt-cpp/jwt.h>
 #include <functional>
 
-#include "context.h"
+#include "icontext.h"
+
+#include <boost/beast/core.hpp>
+#include <boost/beast/http.hpp>
+#include <boost/json.hpp>
+
+namespace beast = boost::beast;     // from <boost/beast.hpp>
+namespace http = beast::http;      // from <boost/beast/http.hpp>
+namespace json = boost::json;      // from <boost/json.hpp>
 
 using namespace std;
 
@@ -19,39 +27,40 @@ std::string create_jwt( std::string login, std::string password )
         return token_;
 }
 
-extern "C"  void Handle( ContextPtr context )
+extern "C"  void Handle( IContextPtr context )
 {
-        if( context->req.method() != http::verb::post )
+        http::request<http::string_body> req = context->getRequest();
+        if( req.method() != http::verb::post )
         {
-                context->next = true;
+                context->setNext(true) ;
                 return;
         }
 
-        context->next = false;
-        
         try{
-                json::value _body = json::parse(context->req.body());
+                json::value _body = json::parse(req.body());
 
                 std::string login = _body.at("login").as_string().c_str();
                 std::string password = _body.at("password").as_string().c_str();
                 string jwt = create_jwt(login, password);
 
-
-                context->res.set(http::field::content_type, "application/json");
+                http::response<http::string_body> res;
+                res.set(http::field::content_type, "application/json");
                 json::object json_response;
                 json_response["access_token"] = jwt;
                 json_response["token_type"] = "Bearer";
 
-                context->res.body() = json::serialize(json_response);
-                context->res.result(http::status::ok);
-                context->res.set(http::field::content_type, "application/json");
-                context->res.prepare_payload();
+                res.body() = json::serialize(json_response);
+                res.result(http::status::ok);
+                res.set(http::field::content_type, "application/json");
+                res.prepare_payload();
 
-                context->next = false;
+                context->setResponse( res );
+
+                context->setNext(false) ;
         }
         catch(exception& e)
         {
-                context->next = true;
+                context->setNext(true) ;
         }
 }
 

@@ -31,8 +31,8 @@ class Server: public IServer
            
             acceptor->accept(socket);
 
-            Session s(std::move(socket));
-            s.Start();
+            StartSessionCmd s(std::move(socket));
+            s.Execute();
         }
     }
 };

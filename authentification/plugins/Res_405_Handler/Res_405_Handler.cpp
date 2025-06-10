@@ -1,19 +1,21 @@
 
 #include <iostream>
 #include <boost/json.hpp>
-//#include <memory>
+
 #include <functional>
 
-#include "context.h"
+#include "icontext.h"
 
 using namespace std;
 
 
-extern "C"  void Handle( ContextPtr context )
+extern "C"  void Handle( IContextPtr context )
 {
-        context->next = false;
-        context->res.result(http::status::method_not_allowed);
-        context->res.set(http::field::content_type, "text/plain");
-        context->res.body() = "Method Not Allowed ";
-        context->res.prepare_payload();
+        context->setNext(false) ;
+        http::response<http::string_body> res;
+        res.result(http::status::method_not_allowed);
+        res.set(http::field::content_type, "text/plain");
+        res.body() = "Method Not Allowed ";
+        res.prepare_payload();
+        context->setResponse(res);
 }

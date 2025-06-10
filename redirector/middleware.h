@@ -12,7 +12,6 @@ namespace beast = boost::beast;     // from <boost/beast.hpp>
 namespace http = beast::http;      // from <boost/beast/http.hpp>
 
 #include "imiddleware.h"
-#include "icommand.h"
 #include "context.h"
 
 class MidlewareOne: public IMiddleware
@@ -26,12 +25,12 @@ class MidlewareOne: public IMiddleware
         m_cmd = cmd;
     }    
 
-    void Handle( ContextPtr context )
+    void Handle( IContextPtr context )
     {
         m_cmd->Execute();
          
-        if(m_next != nullptr && context->next)
-            m_next->Handle(context);
+        if(m_next != nullptr && context->getNext())
+            m_next->Handle(context);        
     }
 };
 
