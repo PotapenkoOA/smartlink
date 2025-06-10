@@ -1,8 +1,8 @@
-# Install script for directory: /home/vboxuser/Documents/smart_link/redirector2/plugins/Res_401_Handler
+# Install script for directory: /home/vboxuser/Documents/smartlink/redirector/plugins/Res_401_Handler
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/Documents/smart_link/redirector2/plugins/Res_401_Handler/install")
+  set(CMAKE_INSTALL_PREFIX "/home/vboxuser/Documents/smartlink/redirector/plugins/Res_401_Handler/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/vboxuser/Documents/smart_link/redirector2/plugins/Res_401_Handler/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/vboxuser/Documents/smartlink/redirector/plugins/Res_401_Handler/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

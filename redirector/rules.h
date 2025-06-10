@@ -3,11 +3,9 @@
 
 #include <string>
 #include <list>
-#include <iostream>
 
 #include "icommand.h"
 #include "context.h"
-#include "conditions.h"
 
 class RuleCmd: public ICommand
 {
@@ -25,33 +23,10 @@ class RuleCmd: public ICommand
     {
         for( auto cmd: *m_cmds )
         {
-            std::cout<<"RuleCmd\n";
             cmd->Execute();
             if( ! m_context->next )
                 return;
         }
-    }
-};
-
-class SetUrlCmd: public ICommand
-{
-    ContextPtr m_context;
-    std::string m_url;
-
-    public:
-    SetUrlCmd( std::string url , ContextPtr context )
-    {
-        m_context = context; 
-        m_url = url;
-    }
-
-    void Execute()
-    {
-        //std::cout<<"url:"<<m_url<<std::endl;
-        m_context->next = true;
-        m_context->res.result(http::status::temporary_redirect);
-        m_context->res.set(http::field::content_type, "application/json");
-        m_context->res.set(http::field::location, m_url);
     }
 };
 
@@ -71,7 +46,6 @@ class StopCheckUpCmd: public ICommand
     {
         for( auto cmd: *m_cmds )
         {
-           // std::cout<<"NextCmd\n";
             cmd->Execute();
             if( m_context->next )
             {
@@ -81,7 +55,5 @@ class StopCheckUpCmd: public ICommand
         }
     }
 };
-
-
 
 #endif

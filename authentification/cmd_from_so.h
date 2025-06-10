@@ -15,8 +15,6 @@ typedef void (*func_t)(ContextPtr);
 
 class ConditionCmd: public ICommand
 {
-    std::string m_condition_value;
-    // обработчик выполнения? string m_value2;
     void* m_handle;
 
     ContextPtr m_context;
@@ -25,8 +23,7 @@ class ConditionCmd: public ICommand
     ConditionCmd(std::string lib_path,  ContextPtr context )
     {
         m_context = context;
-        //? загрузка условия в json
-        // Загружаем библиотеку
+        
         m_handle = dlopen(lib_path.c_str(), RTLD_NOW);
         if (!m_handle) {
             std::cerr << "Ошибка загрузки библиотеки: " << dlerror() << std::endl;
@@ -51,7 +48,7 @@ class ConditionCmd: public ICommand
             return;// 1;
         }
 
-        // Вызываем функцию
+        // Вызываем функции
         _function(m_context);
         return;
     }

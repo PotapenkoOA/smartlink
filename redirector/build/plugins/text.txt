@@ -1,0 +1,7 @@
+COPY ./build/plugins/Con_age_Handler/Con_age_Handler /app/plugins/Con_age_Handler
+COPY ./build/plugins/Con_daytime_Handler/Con_daytime_Handler /app/plugins/Con_age_Handler
+COPY ./build/plugins/Con_weekday_Handler/Con_weekday_Handler /app/plugins/Con_age_Handler
+COPY ./build/plugins/Res_307_Handler/Res_307_Handler /app/plugins/Con_age_Handler
+COPY ./build/plugins/Res_401_Handler/Res_401_Handler /app/plugins/Con_age_Handler
+COPY ./build/plugins/Res_405_Handler/Res_405_Handler /app/plugins/Con_age_Handler
+text.txt

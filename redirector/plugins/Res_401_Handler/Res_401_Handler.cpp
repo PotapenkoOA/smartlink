@@ -45,8 +45,11 @@ extern "C"  void Handle( ContextPtr context )
         }
 
         try {
+
                std::string msg = extract_bearer_token( context->req );
                verify_jwt( msg ) ;
+
+               context->res.result(http::status::ok);
                context->next = true;
         }
         catch(...)

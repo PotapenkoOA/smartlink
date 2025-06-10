@@ -1,0 +1,9 @@
+/home/vboxuser/Documents/smartlink/authentification/build/CMakeFiles/http_server.dir
+/home/vboxuser/Documents/smartlink/authentification/build/CMakeFiles/edit_cache.dir
+/home/vboxuser/Documents/smartlink/authentification/build/CMakeFiles/rebuild_cache.dir
+/home/vboxuser/Documents/smartlink/authentification/build/plugins/Res_200_Handler/CMakeFiles/Res_200_Handler.dir
+/home/vboxuser/Documents/smartlink/authentification/build/plugins/Res_200_Handler/CMakeFiles/edit_cache.dir
+/home/vboxuser/Documents/smartlink/authentification/build/plugins/Res_200_Handler/CMakeFiles/rebuild_cache.dir
+/home/vboxuser/Documents/smartlink/authentification/build/plugins/Res_405_Handler/CMakeFiles/Res_405_Handler.dir
+/home/vboxuser/Documents/smartlink/authentification/build/plugins/Res_405_Handler/CMakeFiles/edit_cache.dir
+/home/vboxuser/Documents/smartlink/authentification/build/plugins/Res_405_Handler/CMakeFiles/rebuild_cache.dir

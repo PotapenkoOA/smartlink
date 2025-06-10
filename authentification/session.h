@@ -43,14 +43,30 @@ class RoutinHandler{
 
     void Execute()
     {
-        beast::flat_buffer buffer;  
-        http::read( m_socket, buffer, m_context->req);
 
-        std::cout<<"body:"<<m_context->req<<std::endl;
+        while (true)
+        {
+            beast::flat_buffer buffer;  
+            beast::error_code ec;
+            http::read( m_socket, buffer, m_context->req, ec);
+                        
+            if (ec == beast::http::error::end_of_stream) {
+                std::cout << "Клиент разорвал соединение\n";
+                return;
+            }
+            else if (ec) {
+                std::cerr << "Ошибка чтения: " << ec.message() << "\n";
+                return;
+            }
 
-        m_Handler->Execute();
+            std::cout<<"req:"<<m_context->req<<std::endl;
+            m_Handler->Execute();
 
-        http::write( m_socket, m_context->res);
+            http::write( m_socket, m_context->res);
+        }
+        
+        
+        
     }
 };
 

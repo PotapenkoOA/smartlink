@@ -15,18 +15,13 @@ typedef void (*func_t)(ContextPtr);
 
 class ConditionCmd: public ICommand
 {
-    std::string m_condition_value;
-    // обработчик выполнения? string m_value2;
     void* m_handle;
-
     ContextPtr m_context;
 
     public:
-    ConditionCmd(std::string lib_path,  ContextPtr context )
+    ConditionCmd( std::string lib_path,  ContextPtr context )
     {
-        m_context = context;
-        //? загрузка условия в json
-        // Загружаем библиотеку
+        m_context = context;        
         m_handle = dlopen(lib_path.c_str(), RTLD_NOW);
         if (!m_handle) {
             std::cerr << "Ошибка загрузки библиотеки: " << dlerror() << std::endl;
@@ -36,7 +31,6 @@ class ConditionCmd: public ICommand
 
     ~ConditionCmd()
     {
-        // Закрываем библиотеку
         if (m_handle)
             dlclose(m_handle);
     }
@@ -44,14 +38,12 @@ class ConditionCmd: public ICommand
     void Execute()
     {
         func_t _function = (func_t)dlsym(m_handle, "Handle");
-
         const char* error = dlerror();
         if (error) {
             std::cerr << "Функция не найдена: " << error << std::endl;
-            return;// 1;
+            return;
         }
-
-        // Вызываем функцию
+       
         _function(m_context);
         return;
     }
@@ -61,8 +53,7 @@ typedef void (*func__t)(ConditionContextPtr);
 
 class SoConditionCmd: public ICommand
 {
-    std::string m_condition_value;
-    // обработчик выполнения? string m_value2;
+    std::string m_condition_value;    
     void* m_handle;
 
     ConditionContextPtr m_context;
@@ -71,8 +62,7 @@ class SoConditionCmd: public ICommand
     SoConditionCmd(std::string lib_path,  ConditionContext context )
     {
         m_context = make_shared<ConditionContext>(context);
-        //? загрузка условия в json
-        // Загружаем библиотеку
+        
         m_handle = dlopen(lib_path.c_str(), RTLD_NOW);
         if (!m_handle) {
             std::cerr << "Ошибка загрузки библиотеки: " << dlerror() << std::endl;
@@ -82,7 +72,6 @@ class SoConditionCmd: public ICommand
 
     ~SoConditionCmd()
     {
-        // Закрываем библиотеку
         if (m_handle)
             dlclose(m_handle);
     }
@@ -97,10 +86,8 @@ class SoConditionCmd: public ICommand
             return;// 1;
         }
 
-        // Вызываем функцию
         _function(m_context);
         cout<<m_context->condition<<" "<<m_context->cntxt->next<<endl;
-
 
         return;
     }
