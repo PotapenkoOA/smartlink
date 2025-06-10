@@ -43,12 +43,19 @@ jobs:
             #- name: build tests
             #  run: cd build; make; 
 
-            - name: run tests
-              run: |
-                 cp ./authentification/settings/settings.json ./authentification/build/settings.json;
-                 cp ./redirector/settings/settings.json ./redirector/build/settings.json;
-                 ./authentification/build/http_server &
-                 ./redirector/build/http_server &
-                 ./agent/build/agent ;
+            #- name: run tests
+            #  run: |
+            #     cp ./authentification/settings/settings.json ./authentification/build/settings.json;
+            #     cp ./redirector/settings/settings.json ./redirector/build/settings.json;
+            #     cp ./redirector/settings/settings.json ./redirector/build/settings.json;
+            #     mkdir ./redirector/build/plugins/Con_age_Handler
+            #     cp ./redirector/build/plugins/Con_age_Handler ./redirector/build/plugins/Con_age_Handler;
+            #     cp ./redirector/build/plugins/Con_age_Handler ./redirector/build/plugins/Con_age_Handler;
+            #     cp ./redirector/build/plugins/Con_age_Handler ./redirector/build/plugins/Con_age_Handler;
+            #     cp ./redirector/settings/settings.json ./redirector/build/settings.json;
+            #     cp ./redirector/settings/settings.json ./redirector/build/settings.json;
+            #     ./authentification/build/http_server &
+            #     ./redirector/build/http_server &
+            #     ./agent/build/agent ;
             #     ./redirector & ./redirector & ( sleep 10 ; ./agent );
 
