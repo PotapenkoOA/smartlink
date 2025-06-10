@@ -33,7 +33,6 @@ class ConditionCmd: public ICommand
 
     ~ConditionCmd()
     {
-        // Закрываем библиотеку
         if (m_handle)
             dlclose(m_handle);
     }
