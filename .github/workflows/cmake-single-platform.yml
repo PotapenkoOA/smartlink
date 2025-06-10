@@ -4,9 +4,9 @@ name: smartlink
 
 on:
     push:
-        branches: [ "main", "develop" ]
+        branches: [ "main", "develop_" ]
     pull_request:
-        branches: [ "main", "develop" ]
+        branches: [ "main", "develop_" ]
 
 jobs:
     build:

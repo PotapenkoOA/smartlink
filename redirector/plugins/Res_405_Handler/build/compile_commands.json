@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/vboxuser/Documents/smart_link/plugins/Res_405_Handler/build",
-  "command": "/usr/bin/c++ -DBOOST_CONTAINER_DYN_LINK -DBOOST_CONTAINER_NO_LIB -DBOOST_JSON_DYN_LINK -DBOOST_JSON_NO_LIB -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB -DBOOST_URL_DYN_LINK -DBOOST_URL_NO_LIB -DRes_405_Handler_EXPORTS  -g -fPIC -o CMakeFiles/Res_405_Handler.dir/Res_405_Handler.cpp.o -c /home/vboxuser/Documents/smart_link/plugins/Res_405_Handler/Res_405_Handler.cpp",
-  "file": "/home/vboxuser/Documents/smart_link/plugins/Res_405_Handler/Res_405_Handler.cpp",
-  "output": "CMakeFiles/Res_405_Handler.dir/Res_405_Handler.cpp.o"
-}
-]
