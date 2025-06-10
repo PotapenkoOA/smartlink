@@ -1,8 +1,5 @@
-/out
-/out/*
-/build
-/build/*
-/parser/build
-/adapters/*
-/jwt-cpp
-/jwt-cpp/*
+*/out
+*/out/*
+*/build
+*/build/*
+
