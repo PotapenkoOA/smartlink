@@ -38,7 +38,7 @@ class Client{
     void query(http::request<http::string_body> req, http::response<http::dynamic_body> &res) {
         try {
             http::write(socket, req);
-             std::cout<<"Response:\n" << req << std::endl<< std::endl;   
+             std::cout<<"Request:\n" << req << std::endl<< std::endl;   
 
             beast::flat_buffer buffer;
             http::read(socket, buffer, res);

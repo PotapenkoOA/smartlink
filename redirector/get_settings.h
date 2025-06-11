@@ -97,7 +97,7 @@ class ReadSettings{
 
                 IoC::Resolve<ICommandPtr, string, IResolverContainerPtr>(
                     "IoC.Register", 
-                    "Http.Res.307", //pDefaultCmdContainer)->Execute(); 
+                    "Http.Res."+to_string(plugin.at("code").as_int64()), //pDefaultCmdContainer)->Execute(); 
                     make_container (  
                         function<ICommandPtr(string, IContextPtr)>([]( string path, IContextPtr context )
                         {
