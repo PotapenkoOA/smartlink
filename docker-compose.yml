@@ -1,0 +1,28 @@
+#version: '3.8'
+
+services:
+  authentification:
+    build:
+      context: ./authentification
+      dockerfile: Docker.auth
+    container_name: authentification
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    depends_on:
+      - redirector
+  redirector:
+    build:
+      context: ./redirector
+      dockerfile: Dockerfile.redirector
+    container_name: redirector
+    ports:
+      - "8087:8087"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
